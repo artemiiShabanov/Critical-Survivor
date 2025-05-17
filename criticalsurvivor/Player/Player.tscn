@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://d17rle2gvebnk"]
+
+[ext_resource type="Script" uid="uid://diws4hqlin0k3" path="res://Player/player.gd" id="1_3qydi"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3qydi"]
+radius = 11.0
+height = 28.0
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_3qydi"]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_3qydi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_3qydi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 4.76837e-07)
+scale = Vector2(18.52, 18.52)
+texture = SubResource("PlaceholderTexture2D_3qydi")
+
+[node name="DashCD" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="DashCD" to="." method="_on_dash_cd_timeout"]
